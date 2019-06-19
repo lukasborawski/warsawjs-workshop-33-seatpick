@@ -13,15 +13,14 @@ node - v10.16.0
 npm - v5.8.0
 ```
 
-By szybciej i płynniej rozpocząć prace nad projektem polecam zainstalować również **Vue CLI**. Gdyby pojawiły się problemy związane z instalacją tego pakietu sprawdź dokładnie czy wersje Node i npm zgadzają się z wymienionymi wyżej.
+By szybciej i płynniej rozpocząć prace nad projektem polecam zainstalować również **Vue CLI** (instrukcja poniżej). Gdyby pojawiły się problemy związane z instalacją tego pakietu sprawdź dokładnie czy wersje Node i npm zgadzają się z wymienionymi wyżej.
 
 ```bash
 npm install -g @vue/cli
 vue --version // sprawdza poprawność instalacji
 ```
-===
 
-Dodatkowe informacje:
+**Dodatkowe informacje**:
 
 * jeśli korzystasz z Atoma te wtyczki mogą być bardzo pomocne:
 	* `language-vue`, `vue-format`, `vue2-autocomplete`
