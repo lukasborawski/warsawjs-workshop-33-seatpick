@@ -49,8 +49,6 @@
     top: -600px;
     width: 100%;
     color: white;
-    font-family: Arial, sans-serif;
-    font-size: 20px;
     border-radius: 5px;
     position: absolute;
     border: 1px solid #fff;
@@ -64,23 +62,5 @@
     margin: 20px 0 0;
     color: red;
   }
-  button {
-    display: block;
-    margin-top: 20px;
-    border: 2px solid white;
-    background-color: black;
-    border-radius: 5px;
-    color: white;
-    padding: 14px 28px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  button.disabled {
-    opacity: .5;
-    pointer-events: none;
-  }
-  button:hover {
-    border-color: lime;
-    color: lime;
-  }
+  /* button was here, moved to the global, remember */
 </style>

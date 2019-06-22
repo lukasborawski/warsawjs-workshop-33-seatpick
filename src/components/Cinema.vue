@@ -1,19 +1,23 @@
 <template lang="html">
-  <div class="cinema">
-    <preview :selected-seats-prop="selectedSeats" @start-reservation="startReservation"/>
-    <div class="screen"></div>
-    <div class="rows">
-      <row v-for="(row, index) in cinema.left" :key="`row-left-${index}`" :row-prop="row" side-prop="left" @seat-selected="collectSeats($event)"/>
+  <div>
+    <div class="cinema">
+      <preview :selected-seats-prop="selectedSeats" @start-reservation="startReservation"/>
+      <div class="screen"></div>
+      <div class="rows">
+        <row v-for="(row, index) in cinema.left" :key="`row-left-${index}`" :row-prop="row" side-prop="left" @seat-selected="collectSeats($event)"/>
+      </div>
+      <div class="rows">
+        <row v-for="(row, index) in cinema.right" :key="`row-right-${index}`" :row-prop="row" side-prop="right" @seat-selected="collectSeats($event)"/>
+      </div>
     </div>
-    <div class="rows">
-      <row v-for="(row, index) in cinema.right" :key="`row-right-${index}`" :row-prop="row" side-prop="right" @seat-selected="collectSeats($event)"/>
-    </div>
+    <modal v-if="modalIsVisible" @close-modal="closeModal"/>
   </div>
 </template>
 
 <script>
   import Row from './Row.vue'
   import Preview from './Preview.vue'
+  import Modal from './Modal/Modal.vue'
 
   export default {
     name: 'cinema',
@@ -35,12 +39,14 @@
               ['J1','J2','J3','J4','J5','J6']
           ]
         },
-        selectedSeats: []
+        selectedSeats: [],
+        modalIsVisible: false
       }
     },
     components: {
       Row,
-      Preview
+      Preview,
+      Modal
     },
     methods: {
       collectSeats($event) {
@@ -52,7 +58,11 @@
         }
       },
       startReservation () {
-
+        this.modalIsVisible = true
+      },
+      closeModal () {
+        console.log('closed')
+        this.modalIsVisible = false
       }
     }
   }
@@ -69,12 +79,14 @@
   .screen {
     left: 0;
     right: 0;
-    top: -300px;
-    width: calc(100% + 40px);
+    top: -320px;
     height: 250px;
     border-radius: 5px;
-    background-color: white;
     position: absolute;
+    background-color: white;
+    width: calc(100% + 40px);
+    background-size: 100% 100%;
+    background-image: url('https://i.ytimg.com/vi/j7307Kl4W7I/maxresdefault.jpg');
   }
   .rows {
     display: flex;
