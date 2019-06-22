@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="row" :class="sideProp">
-    <seat v-for="(seat, index) in rowProp" :key="seat"/>
+    <seat v-for="(seat, index) in rowProp" :key="seat" :seat-prop="seat" @seat-selected="selectSeat($event)" :class="seat"/>
   </div>
 </template>
 
@@ -21,6 +21,11 @@
     },
     components: {
       Seat
+    },
+    methods: {
+      selectSeat($event) {
+        this.$emit('seat-selected', $event)
+      }
     }
   }
 </script>

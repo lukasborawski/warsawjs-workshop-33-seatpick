@@ -2,10 +2,10 @@
   <div class="cinema">
     <div class="screen"></div>
     <div class="rows">
-      <row v-for="(row, index) in cinema.left" :key="`row-left-${index}`" :row-prop="row" side-prop="left"/>
+      <row v-for="(row, index) in cinema.left" :key="`row-left-${index}`" :row-prop="row" side-prop="left" @seat-selected="collectSeats($event)"/>
     </div>
     <div class="rows">
-      <row v-for="(row, index) in cinema.right" :key="`row-right-${index}`" :row-prop="row" side-prop="right"/>
+      <row v-for="(row, index) in cinema.right" :key="`row-right-${index}`" :row-prop="row" side-prop="right" @seat-selected="collectSeats($event)"/>
     </div>
   </div>
 </template>
@@ -32,11 +32,22 @@
               ['I1','I2','I3','I4','I5','I6'],
               ['J1','J2','J3','J4','J5','J6']
           ]
-        }
+        },
+        selectedSeats: []
       }
     },
     components: {
       Row
+    },
+    methods: {
+      collectSeats($event) {
+        const { id, type } = $event;
+        if (type === 'add') {
+          this.selectedSeats = [...this.selectedSeats, id]
+        } else {
+          this.selectedSeats = this.selectedSeats.filter(_id => _id !== id)
+        }
+      }
     }
   }
 </script>

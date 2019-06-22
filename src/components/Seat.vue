@@ -1,10 +1,30 @@
 <template lang="html">
-  <div class="seat"></div>
+  <div class="seat" @click="selectSeat" :class="{'active': selected}"></div>
 </template>
 
 <script>
   export default {
-    name: 'seat'
+    name: 'seat',
+    props: {
+      seatProp: {
+        type: String,
+        default: ''
+      }
+    },
+    data () {
+      return {
+        selected: false
+      }
+    },
+    methods: {
+      selectSeat () {
+        this.selected = !this.selected
+        this.$emit('seat-selected', {
+          id: this.seatProp,
+          type: this.selected ? 'add' : 'remove'
+        })
+      }
+    }
   }
 </script>
 
@@ -22,21 +42,20 @@
   }
   .seat:hover::before {
     content: '';
-    position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
     border-radius: 7px;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
   }
-  .seat.active {}
   .seat.active::before {
     content: '';
-    position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.6);
+    position: absolute;
     border-radius: 7px;
+    background: rgba(255, 255, 255, 0.6);
   }
 </style>
