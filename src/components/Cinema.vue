@@ -61,8 +61,9 @@
         this.modalIsVisible = true
       },
       closeModal () {
-        console.log('closed')
         this.modalIsVisible = false
+        this.$store.dispatch('collectReservedSeats', this.selectedSeats)
+        this.selectedSeats = []
       }
     }
   }
