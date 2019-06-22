@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="cinema">
+    <preview :selected-seats-prop="selectedSeats" @start-reservation="startReservation"/>
     <div class="screen"></div>
     <div class="rows">
       <row v-for="(row, index) in cinema.left" :key="`row-left-${index}`" :row-prop="row" side-prop="left" @seat-selected="collectSeats($event)"/>
@@ -12,6 +13,7 @@
 
 <script>
   import Row from './Row.vue'
+  import Preview from './Preview.vue'
 
   export default {
     name: 'cinema',
@@ -37,7 +39,8 @@
       }
     },
     components: {
-      Row
+      Row,
+      Preview
     },
     methods: {
       collectSeats($event) {
@@ -47,28 +50,31 @@
         } else {
           this.selectedSeats = this.selectedSeats.filter(_id => _id !== id)
         }
+      },
+      startReservation () {
+
       }
     }
   }
 </script>
 
 <style lang="css" scoped>
-  .screen {
-    left: 0;
-    right: 0;
-    top: -300px;
-    width: 600px;
-    height: 250px;
-    border-radius: 5px;
-    background-color: white;
-    position: absolute;
-  }
   .cinema {
     top: 70%;
     left: 50%;
     display: flex;
     position: absolute;
     transform: translate(-50%, -50%);
+  }
+  .screen {
+    left: 0;
+    right: 0;
+    top: -300px;
+    width: calc(100% + 40px);
+    height: 250px;
+    border-radius: 5px;
+    background-color: white;
+    position: absolute;
   }
   .rows {
     display: flex;
