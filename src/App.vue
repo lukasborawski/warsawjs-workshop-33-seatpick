@@ -1,10 +1,17 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <cinema />
+  </div>
 </template>
 
 <script>
+  import Cinema from './components/Cinema.vue'
+
   export default {
-    name: 'app'
+    name: 'app',
+    components: {
+      Cinema
+    }
   }
 </script>
 
@@ -12,5 +19,7 @@
   body {
       width: 100%;
       height: 100%;
+      margin: 60px;
+      background-color: black;
   }
 </style>
